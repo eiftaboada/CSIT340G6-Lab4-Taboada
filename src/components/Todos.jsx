@@ -29,6 +29,12 @@ function handleDelete(id) {
 }
 
 const itemsLeft = todos.filter((todo) => !todo.completed).length
+
+const completedCount = todos.length - itemsLeft
+
+function handleClearCompleted() {
+  setTodos(todos.filter((todo) => !todo.completed))
+}
   
   return (
     <section className="mx-auto max-w-[550px]">
@@ -121,9 +127,15 @@ const itemsLeft = todos.filter((todo) => !todo.completed).length
               </button>
             </li>
           </ul>
-            <button type="button" className="cursor-pointer justify-self-end hover:underline">
-            Clear completed
-          </button>
+            {completedCount > 0 && (
+                <button
+                    type="button"
+                    onClick={handleClearCompleted}
+                    className="cursor-pointer justify-self-end hover:underline"
+                >
+                    Clear completed
+                </button>
+                )}
         </footer>
         </>
         )}
